@@ -7,8 +7,11 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:
+#设置数据库为h2数据库
     platform: h2
+#建表语句(可以不设置，默认会加载classPath下的schema.sql,如果名称不对,那么需要进行配置)
     schema: classpath:schema.sql
+#数据SQL(可以不设置，默认会加载classPath下的data.sql,如果名称不对,那么需要进行配置)
     data: classpath:data.sql
   application:
     name: provider-user

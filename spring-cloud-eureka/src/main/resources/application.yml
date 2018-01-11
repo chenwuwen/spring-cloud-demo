@@ -1,0 +1,15 @@
+server:
+  port: 8001
+#安全配置,登录eureka需要使用用户名密码
+security:
+  basic:
+    enabled: true
+  user:
+    name: kanyun
+    password: kanyun1234
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://kanyun:kanyun1234@localhost:8001/eureka
