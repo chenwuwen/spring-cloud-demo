@@ -1,0 +1,25 @@
+server:
+  port: 7800
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  application:
+    name: consumer-feign-hystrix
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://kanyun:kanyun1234@localhost:8001/config
+feign:
+  hystrix:
+    # feign开启hystrix熔断器,默认是false
+    enabled: true

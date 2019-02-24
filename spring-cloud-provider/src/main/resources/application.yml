@@ -1,0 +1,52 @@
+server:
+  # 随机端口启动[适合多实例可设置为0,${random.int}]，我这里自定义了随机值
+  port: ${randomServerPort.value[1000,2000]}
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  jpa:
+    generate-ddl: false
+    # 是否显示sql语句
+    show-sql: true
+    hibernate:
+      # 配置自动建表：update:没有表新建，有表更新操作,控制台显示建表语句
+      ddl-auto: update
+  datasource:
+#设置数据库为h2数据库
+    platform: h2
+#建表语句(可以不设置，默认会加载classPath下的schema.sql,如果名称不对,那么需要进行配置)
+    schema: classpath:schema.sql
+#数据SQL(可以不设置，默认会加载classPath下的data.sql,如果名称不对,那么需要进行配置)
+    data: classpath:data.sql
+  application:
+    #在Eureka上注册的服务的名字
+    name: provider-service
+  cloud:
+    inetutils:
+      default-ip-address:
+
+logging:
+  level:
+    root: debug
+    org.hibernate: Info
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.itmuch: DEBUG
+
+eureka:
+  client:
+    #注册中心地址：为服务端的地址+/config
+    service-url:
+      #用于设置与Eureka Server 交互的地址[如果服务器端设置安全认证了.客户端在在配置defaultZone的时候需要带上用户名、密码,否则将会报错:com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server]
+      defaultZone: http://kanyun:kanyun1234@localhost:8001/config
+
+  instance:
+    # 随机端口的方式在注册到Eureka的时候会一个问题：所有实例都使用了同样的实例名（如：Lenovo-test:hello-service:0），这导致只出现了一个实例。所以，我们还需要修改实例ID的定义，让每个实例的ID不同，比如加上随机数来配置实例ID
+    instance-id: ${spring.application.name}:${randomServerPort.value[1000,2000]}

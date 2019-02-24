@@ -1,0 +1,54 @@
+server:
+  port: 9000
+  servlet:
+    # 定义项目名[同时关联服务访问路径].此配置的含义为：hostname+port访问.不需要加项目名
+    context-path: /
+
+
+eureka:
+  instance:
+    environment: [test]
+    # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-renewal-interval-in-seconds: 5
+    # 发呆时间，即服务续约到期时间（缺省为90s）
+    lease-expiration-duration-in-seconds: 10
+    hostname: localhost
+
+  client:
+    #是否将自己注册到Eureka Server， 默认为true。
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://kanyun:kanyun1234@localhost:8001/eureka
+    healthcheck:
+      # 开启健康检查（依赖spring-boot-starter-actuator）
+      enabled: true
+
+spring:
+  application:
+    name: spring-cloud-config-server
+# profiles:
+    # 使用SVN作为配置中心时使用
+#   active: subversion
+  cloud:
+    config:
+      discovery:
+        #开启config服务发现，既开启集群环境，此开关开启时，client必须使用服务名链接config server。
+        enabled: true
+      server:
+        git:
+          # 注意这里的URI使用https的形式【避免使用用户名.密码】
+          uri: https://github.com/chenwuwen/spring-cloud-demo.git
+          # 选择git分支,默认是master,svn的默认分支是trunk
+          default-label: master
+          #search-paths:属性表示搜索，如果你的仓库中有很多子文件，那么为了让config快速搜索到配置信息的存放目录，你就可以指定搜索文件名
+          # 使用应用名称作为搜索路径[使用应用名称作为搜索路径时需要用单引号括起来，否则yml文件无法正确解析。]
+          search-paths: '{config}'
+
+
+#       svn:
+#         uri: svn://localhost/demo/spring_cloud/parent/trunk/properties/
+#         username: 你的SVN账号
+#         password: 你的SVN密码
+#         search-paths: '{application}'
+#         default-label: trun

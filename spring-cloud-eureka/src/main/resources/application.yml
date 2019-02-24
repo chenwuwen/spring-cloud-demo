@@ -1,15 +1,41 @@
 server:
   port: 8001
+  servlet:
+    # 定义项目名[同时关联服务访问路径].此配置的含义为：hostname+port访问.不需要加项目名
+    context-path: /
+
 #安全配置,登录eureka需要使用用户名密码
-security:
-  basic:
-    enabled: true
-  user:
-    name: kanyun
-    password: kanyun1234
+spring:
+  security:
+    user:
+      name: kanyun
+      password: kanyun1234
+
 eureka:
+
+  instance:
+    environment: [test]
+    # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-renewal-interval-in-seconds: 5
+    # 发呆时间，即服务续约到期时间（缺省为90s）
+    lease-expiration-duration-in-seconds: 10
+    hostname: localhost
+
   client:
-    fetch-registry: false
+    #在默认设置下，Eureka服务注册中心也会将自己作为客户端来尝试注册它自己,禁用它的客户端注册行为
+    #是否将自己注册到Eureka Server， 默认为true。 由于当前应用就是Eureka Server， 因此设为 false
     register-with-eureka: false
+    #是否从Eureka Server获取注册信息，默认为true。 如果这是一个单点的 Eureka Server，不需要同步其他节点的数据，可以设为false
+    fetch-registry: false
     service-url:
-      defaultZone: http://kanyun:kanyun1234@localhost:8001/eureka
+      # 当Eureka客户端需要注册到Eureka服务端时,客户端的连接地址为：此地址 + /config
+      defaultZone: http://${eureka.instance.hostname}:${server.port}${server.servlet.context-path}
+    healthcheck:
+      # 开启健康检查（依赖spring-boot-starter-actuator）
+      enabled: true
+
+  server:
+    # 关闭自我保护模式（缺省为打开）
+    enable-self-preservation: true
+    # 续期时间，即扫描失效服务的间隔时间（缺省为60*1000ms）
+    eviction-interval-timer-in-ms: 5000

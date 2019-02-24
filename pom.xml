@@ -10,9 +10,14 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-cloud-provider-user</module>
-        <module>spring-cloud-consumer-ticket</module>
+        <module>spring-cloud-provider</module>
+        <module>spring-cloud-consumer-ribbon</module>
+        <module>spring-cloud-consumer-hystrix</module>
+        <module>spring-cloud-consumer-feign</module>
+        <module>spring-cloud-consumer-feign-hystrix</module>
         <module>spring-cloud-eureka</module>
+        <module>spring-cloud-config-server</module>
+        <module>spring-cloud-config-client</module>
     </modules>
 
     <properties>
@@ -21,18 +26,53 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <!--以SpringBoot 2.x 为基础，注意与SpringCloud版本之间的兼容问题-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.4.RELEASE</version>
+        <version>2.0.4.RELEASE</version>
+        <relativePath/>
     </parent>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.2</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
+        </dependency>
+
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+            <scope>true</scope>
+        </dependency>
+
+
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
+            <!--SpringCloud依赖,注意该版本,与SpringBoot版本的兼容问题-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Dalston.SR1</version>
+                <version>Finchley.SR2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -41,9 +81,13 @@
 
     <build>
         <plugins>
+            <!--project 中添加 spring-boot-maven-plugin,主要在eclipse中使用，idea中不需要添加此配置。-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
             </plugin>
         </plugins>
     </build>
