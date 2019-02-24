@@ -1,8 +1,26 @@
+eureka:
+  instance:
+    environment: [test]
+    # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-renewal-interval-in-seconds: 5
+    # 发呆时间，即服务续约到期时间（缺省为90s）
+    lease-expiration-duration-in-seconds: 10
+    hostname: localhost
+
+  client:
+    service-url:
+      defaultZone: http://kanyun:kanyun1234@localhost:8001/eureka
+    healthcheck:
+      # 开启健康检查（依赖spring-boot-starter-actuator）
+      enabled: true
+
 spring:
   cloud:
     # 配置服务器的地址
     config:
+      # 如果需要使用服务名来访问配置中心,需要如下discovery的配置.同时Eureka配置也应该移入bootstrap.yml中
       uri: http://spring-cloud-config-server
+      #uri: http://localhost:9000
       # 要读取配置文件读取的值.此值,跟 application.yml中的application.name的值相等,该配置+下面的profile配置,共同组成了,配置仓库中配置文件的名字
       name: spring-cloud-config-client
       # 如果不设置此值，则系统设置此值为 spring.profiles.active
@@ -20,3 +38,9 @@ spring:
         max-interval: 4000
         # 每次重试时间是之前的倍数
         multiplier: 1.2
+      # 如果需要使用服务名来访问配置中心,需要如下配置.同时Eureka配置也应该移入bootstrap.yml中
+      discovery:
+        # 启动服务发现的功能，开启了才能调用其它服务
+        enabled: true
+        # 此Id是配置中心服务的InstanceId
+        service-id: spring-cloud-config-server

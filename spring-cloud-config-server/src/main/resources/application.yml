@@ -13,6 +13,7 @@ eureka:
     # 发呆时间，即服务续约到期时间（缺省为90s）
     lease-expiration-duration-in-seconds: 10
     hostname: localhost
+    instance-id: spring-cloud-config-server
 
   client:
     #是否将自己注册到Eureka Server， 默认为true。
@@ -49,7 +50,6 @@ spring:
           basedir: C:\Users\KANYUN\Desktop\2.登录案例_网络版_httpClient
           # 配置中心通过git从远程git库，有时本地的拷贝被污染，这时配置中心无法从远程库更新本地配置,设置force-pull=true，则强制从远程库中更新本地库
           force-pull: true
-
 
 #       svn:
 #         uri: svn://localhost/demo/spring_cloud/parent/trunk/properties/
