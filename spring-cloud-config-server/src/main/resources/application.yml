@@ -37,7 +37,8 @@ spring:
         enabled: true
       server:
         git:
-          # 注意这里的URI使用https的形式【避免使用用户名.密码】
+          # 注意这里的URI使用https的形式【避免使用用户名.密码】,特别需要注意的是,这个地址需要定位到配置文件所在目录
+          # https://www.jianshu.com/p/6dfd1ab93596
           uri: https://github.com/chenwuwen/spring-cloud-demo
           # 选择git分支,默认是master,svn的默认分支是trunk
           default-label: master

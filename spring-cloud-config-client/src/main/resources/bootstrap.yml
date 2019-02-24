@@ -3,8 +3,8 @@ spring:
     # 配置服务器的地址
     config:
       uri: http://spring-cloud-config-server
-      # 要读取配置文件读取的值
-      name: cloud-config
+      # 要读取配置文件读取的值.此值,跟 application.yml中的application.name的值相等,该配置+下面的profile配置,共同组成了,配置仓库中配置文件的名字
+      name: spring-cloud-config-client
       # 如果不设置此值，则系统设置此值为 spring.profiles.active
       profile: dev
       # 可以使用之前的版本。默认值可以是git label, branch name or commit id。可以使用多个Label，多个Label可以使用逗号分隔
