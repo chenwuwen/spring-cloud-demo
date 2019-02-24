@@ -43,7 +43,7 @@ spring:
           default-label: master
           #search-paths:属性表示搜索，如果你的仓库中有很多子文件，那么为了让config快速搜索到配置信息的存放目录，你就可以指定搜索文件名
           # 使用应用名称作为搜索路径[使用应用名称作为搜索路径时需要用单引号括起来，否则yml文件无法正确解析。]
-          search-paths: '{config}'
+          search-paths: '{application}'
           # 对于使用git,svn做为后端配置，从远程库获取配置文件，需要存储到本地文件
           basedir: C:\Users\KANYUN\Desktop\2.登录案例_网络版_httpClient
           # 配置中心通过git从远程git库，有时本地的拷贝被污染，这时配置中心无法从远程库更新本地配置,设置force-pull=true，则强制从远程库中更新本地库
