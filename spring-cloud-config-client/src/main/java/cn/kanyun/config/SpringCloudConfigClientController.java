@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 并且在Controller中增加@RefreshScope注解。
  * actuator给我们提供了一个/refresh接口，修改完git仓库信息之后，向这个接口发送一个POST信息，
  * 就会更新配置信息了。
+ * 如果代码中需要动态刷新配置，在需要的类上加上该注解就行 @RefreshScope作用的类，不能是final类，否则启动时会报错
  */
 @RefreshScope
 public class SpringCloudConfigClientController {

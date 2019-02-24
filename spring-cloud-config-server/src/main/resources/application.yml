@@ -57,3 +57,11 @@ spring:
 #         password: 你的SVN密码
 #         search-paths: '{application}'
 #         default-label: trun
+
+
+# 利用spring-boot-starter-actuator实现配置半自动刷新
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

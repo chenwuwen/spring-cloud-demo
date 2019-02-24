@@ -9,7 +9,7 @@ spring:
     name: spring-cloud-config-client
 
 
-
+# 利用spring-boot-starter-actuator实现配置半自动刷新
 management:
   endpoints:
     web:
