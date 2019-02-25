@@ -1,4 +1,4 @@
-package cn.kanyun.ticket.entity;
+package cn.kanyun.zuul.entity;
 
 import java.io.Serializable;
 

@@ -18,7 +18,7 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://kanyun:kanyun1234@localhost:8001/config
+      defaultZone: http://kanyun:kanyun1234@localhost:8001/eureka
 feign:
   hystrix:
     # feign开启hystrix熔断器,默认是false

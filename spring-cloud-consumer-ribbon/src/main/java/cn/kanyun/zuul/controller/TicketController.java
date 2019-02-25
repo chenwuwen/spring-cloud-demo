@@ -1,6 +1,6 @@
-package cn.kanyun.ticket.controller;
+package cn.kanyun.zuul.controller;
 
-import cn.kanyun.ticket.entity.User;
+import cn.kanyun.zuul.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

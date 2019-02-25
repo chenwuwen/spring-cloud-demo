@@ -59,7 +59,7 @@ spring:
 #         default-label: trun
 
 
-# 利用spring-boot-starter-actuator实现配置半自动刷新
+# 利用spring-boot-starter-actuator实现配置半自动刷新,配置中心服务端,客户端都需要配置
 management:
   endpoints:
     web:

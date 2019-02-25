@@ -19,7 +19,7 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://kanyun:kanyun1234@localhost:8001/config
+      defaultZone: http://kanyun:kanyun1234@localhost:8001/eureka
 
 ribbon:
   ReadTimeout: 6000

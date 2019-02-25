@@ -42,10 +42,10 @@ logging:
 
 eureka:
   client:
-    #注册中心地址：为服务端的地址+/config
+    #注册中心地址：为服务端的地址+/eureka
     service-url:
       #用于设置与Eureka Server 交互的地址[如果服务器端设置安全认证了.客户端在在配置defaultZone的时候需要带上用户名、密码,否则将会报错:com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server]
-      defaultZone: http://kanyun:kanyun1234@localhost:8001/config
+      defaultZone: http://kanyun:kanyun1234@localhost:8001/eureka
 
   instance:
     # 随机端口的方式在注册到Eureka的时候会一个问题：所有实例都使用了同样的实例名（如：Lenovo-test:hello-service:0），这导致只出现了一个实例。所以，我们还需要修改实例ID的定义，让每个实例的ID不同，比如加上随机数来配置实例ID
