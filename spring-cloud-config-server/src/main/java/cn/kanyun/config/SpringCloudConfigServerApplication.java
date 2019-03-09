@@ -16,7 +16,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  */
 @EnableDiscoveryClient
 /**
- * 活配置中心服务。配置中心可以单独做服务，也可以嵌入到其它服务中。推荐用单独做服务方式使用配置中心
+ * 激活配置中心服务。配置中心可以单独做服务，也可以嵌入到其它服务中。推荐用单独做服务方式使用配置中心
  */
 @EnableConfigServer
 public class SpringCloudConfigServerApplication {

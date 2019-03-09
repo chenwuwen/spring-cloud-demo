@@ -1,0 +1,17 @@
+server:
+  port: 9001
+  servlet:
+    # 定义项目名[同时关联服务访问路径].此配置的含义为：hostname+port访问.不需要加项目名
+    context-path: /
+
+spring:
+  application:
+    name: spring-cloud-bus-client
+
+
+# 利用spring-boot-starter-actuator实现配置半自动刷新【bus配置方式】
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

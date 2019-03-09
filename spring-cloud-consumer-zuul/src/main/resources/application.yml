@@ -1,0 +1,35 @@
+server:
+  port: 7800
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  application:
+    name: consumer-zuul
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://kanyun:kanyun1234@localhost:8001/eureka
+
+
+# 定义zuul路由 即：根据不同的URI zuul将转发到不同的微服务上 其中 a-service-path 是自定义的
+zuul:
+  # 可以统一前缀,如加上API的版本号
+  prefix: /v1
+  routes:
+    a-service-path:
+      path: /zuul-a/**
+      serviceId: provider-service
+
+
+#    b-service-path:
+#      path: zuul-b/**
+#      serviceId: xxxx

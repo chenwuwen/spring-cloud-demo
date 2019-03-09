@@ -17,6 +17,8 @@
         <module>spring-cloud-consumer-feign</module>
         <module>spring-cloud-consumer-feign-hystrix</module>
         <module>spring-cloud-eureka</module>
+        <module>spring-cloud-bus-client</module>
+        <module>spring-cloud-bus-server</module>
         <module>spring-cloud-config-server</module>
         <module>spring-cloud-config-client</module>
     </modules>
@@ -61,7 +63,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
-            <scope>runtime</scope>
         </dependency>
 
 
@@ -82,6 +83,7 @@
 
     <build>
         <plugins>
+            <!--mvn spring-boot:run 命令-->
             <!--project 中添加 spring-boot-maven-plugin,主要在eclipse中使用，idea中不需要添加此配置。-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
